@@ -1,33 +1,15 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-Listing 2.1 http://mng.bz/go7l 
-Pre-sync phase Sync phase Post-sync phase
-Resources Pre-sync hooks Post-sync hooks
-Sync-fail hooks
-Sync hooks
-Execution sequence Execute custom
-synchronization logic.
-Application
-resources
-Execute pre-sync
-tasks such as
-database migration.
-Execute post-sync
-actions such as
-smoke tests.
-Handle failed
-synchronization.
-Deep dive into Argo CD features 49
- name: before
- annotations:
- argocd.argoproj.io/hook: PreSync
+  name: before
+  annotations:
+    argocd.argoproj.io/hook: PreSync
 spec:
- template:
- spec:
- containers:
- - name: sleep
- image: alpine:latest
- command: ["echo", "pre-sync"]
- restartPolicy: Never
- backoffLimit: 0
+  template:
+    spec:
+      containers:
+      - name: sleep
+        image: alpine:latest
+        command: ["echo", "pre-sync"]
+      restartPolicy: Never
+  backoffLimit: 0
